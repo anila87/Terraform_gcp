@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: LoadBalancer   # <-- this is the key
+  type: LoadBalancer 
   selector:
     app: nginx
   ports:
