@@ -10,9 +10,9 @@ resource "google_project_service" "compute" {
 
 resource "google_container_cluster" "primary" {
   name     = var.cluster_name
-  location = var.zone                    # zonal cluster; change to region if you prefer regional
+  location = var.zone                   
   remove_default_node_pool = true
-  initial_node_count = 1                 # kept minimal because we manage node pools separately
+  initial_node_count = 1                 
 
   logging_service    = "logging.googleapis.com/kubernetes"
   monitoring_service = "monitoring.googleapis.com/kubernetes"
