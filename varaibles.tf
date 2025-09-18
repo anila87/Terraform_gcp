@@ -14,3 +14,9 @@ variable "zone" {
   type        = string
   default     = "us-central1-a"
 }
+
+variable "location" {
+  description = "GCP bucket location/region"
+  type        = string
+  default     = "us-central1"
+}
