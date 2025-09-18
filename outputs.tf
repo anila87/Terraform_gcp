@@ -1,5 +1,5 @@
 output "instance_group_manager" {
-  value = google_compute_instance_group_manager.default.name  # ✅ updated reference
+  value = google_compute_instance_group_manager.default.name  
 }
 
 
