@@ -1,3 +1,8 @@
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
+
 resource "google_compute_instance_template" "default" {
   name         = "mig-template"
   machine_type = "e2-medium"
@@ -12,7 +17,7 @@ resource "google_compute_instance_template" "default" {
 
   network_interface {
     network = "default"
-    access_config {}
+   
   }
 
   metadata_startup_script = <<-EOT
@@ -40,10 +45,10 @@ resource "google_compute_instance_group_manager" "default" {
 
 
 resource "google_compute_health_check" "default" {
-  name               = "mig-health-check"
-  check_interval_sec = 5
-  timeout_sec        = 5
-  healthy_threshold  = 2
+  name                = "mig-health-check"
+  check_interval_sec  = 5
+  timeout_sec         = 5
+  healthy_threshold   = 2
   unhealthy_threshold = 2
 
   http_health_check {
@@ -53,7 +58,7 @@ resource "google_compute_health_check" "default" {
 
 resource "google_compute_autoscaler" "default" {
   name   = "mig-autoscaler"
-  zone = var.zone
+  zone   = var.zone
   target = google_compute_instance_group_manager.default.self_link
 
   autoscaling_policy {
@@ -65,4 +70,21 @@ resource "google_compute_autoscaler" "default" {
       target = 0.6
     }
   }
+}
+
+
+resource "google_storage_bucket" "tfstate_bucket" {
+  name          = "tfbu"
+  location      = "US"
+  force_destroy = true
+
+  versioning {
+    enabled = true
+  }
+}
+
+resource "google_storage_bucket_iam_member" "private_access" {
+  bucket = google_storage_bucket.tfstate_bucket.name
+  role   = "roles/storage.objectAdmin"
+  member = "user:anila.gokada.8@gmail.com"
 }
