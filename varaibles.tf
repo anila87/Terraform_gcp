@@ -1,7 +1,7 @@
 variable "project" {
   description = "GCP Project ID"
   type        = string
-  default = "radiant-arcanum-472209-v6"
+ 
 }
 
 variable "region" {
