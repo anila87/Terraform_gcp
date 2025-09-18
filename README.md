@@ -1,6 +1,6 @@
 # GCP Regional Managed Instance Group with Autohealing & Autoscaling
 
-This Terraform project provisions a Regional Managed Instance Group (MIG) in Google Cloud Platform with autohealing and CPU-based autoscaling. Key features include:
+This Terraform project provisions a Managed Instance Group (MIG) in Google Cloud Platform with autohealing and CPU-based autoscaling. Key features include:
 
 Instance Template: Defines VM configuration, including machine type, boot disk, network, and a startup script that installs NGINX.
 
