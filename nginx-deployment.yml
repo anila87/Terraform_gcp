@@ -19,3 +19,33 @@ spec:
         image: nginx:stable
         ports:
         - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: 80
+          failureThreshold: 10
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: 80
+          failureThreshold: 5
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
