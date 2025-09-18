@@ -1,8 +1,3 @@
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
-
 resource "google_compute_instance_template" "default" {
   name         = "mig-template"
   machine_type = "e2-medium"
