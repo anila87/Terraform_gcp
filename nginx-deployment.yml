@@ -21,7 +21,7 @@ spec:
         - containerPort: 80
         livenessProbe:
           httpGet:
-            path: /management/health
+            path: /
             port: 80
           failureThreshold: 10
           initialDelaySeconds: 30
@@ -29,7 +29,7 @@ spec:
           timeoutSeconds: 15
         readinessProbe:
           httpGet:
-            path: /management/health
+            path: /
             port: 80
           failureThreshold: 5
           initialDelaySeconds: 30
