@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-loadbalancer
-  namespace: default       
+  namespace: default #edit the namespace if needed      
 spec:
   type: LoadBalancer      
   selector:
