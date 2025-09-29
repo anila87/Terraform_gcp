@@ -1,2 +1,2 @@
-# Terraform_gcp
-The following repository includes Iac using Terraform hosted on GCP
+# Canary Deployment
+The following repository includes Canary Deployment Strategy uisng Nginx app via GKE
