@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-canary
 spec:
-  replicas: 1    # small fraction of traffic
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -19,3 +19,10 @@ spec:
         image: nginx:1.25
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx-html
+        configMap:
+          name: nginx-canary-config
