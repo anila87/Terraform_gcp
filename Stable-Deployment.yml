@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nginx-stable
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -16,6 +16,13 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.24
+        image: nginx:1.25
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-html
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx-html
+        configMap:
+          name: nginx-stable-config
